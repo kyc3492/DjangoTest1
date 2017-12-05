@@ -1,0 +1,20 @@
+{% extends 'musicapp/base.html' %}
+{% load staticfiles %}
+
+{% block Title %} 앨범 {% endblock %}
+{% block Current_Albums %}active{% endblock %}
+{% block Body %}
+{% if all_album %}
+       <ul>
+           {% for album in all_album %}
+               <li>
+                   <a href = {% url 'musicapp:detail' album.id %}>{{ album.album_title }}</a>
+                   <!--<a href = "/music/{{ album.id }}">{{ album.album_title }}</a>-->
+               </li>
+           {%  endfor %}
+       </ul>
+{% else %}
+       <h1>앨범이 없습니다</h1>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,8 @@
+body{
+    background: white url("images/hypnotize.png");
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.navbar{
+    border-radius: 0;
+}

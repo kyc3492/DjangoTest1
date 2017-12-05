@@ -1,0 +1,25 @@
+{% extends 'musicapp/base.html' %}
+
+{% block Title %} 앨범정보 {% endblock %}
+{% block Current_Songs %}active{% endblock %}
+{% block Body %}
+    <img src="{{ album.album_logo }}" height="200" width="200">
+    <h1>{{ album.album_title }}</h1>
+    <h3>{{ album.artist }}</h3>
+    <form action ="{% url 'musicapp:favorite' album.id %}" method="post">
+        {% csrf_token %}
+        {% if error_message %}
+            <h3>{{ error_message }}</h3>
+        {% endif %}
+         {% for song in album.song_set.all %}
+             <input type="radio" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}">
+             <label for="song{{ forloop.counter }}">{{ song.song_title }}.{{ song.file_type }}
+                {% if song.is_favorite %}
+                    <img src="http://i.imgur.com/b9b13Rd.png">
+                {% endif %}
+             </label><br>
+         {% endfor %}
+        <br>
+        <button type="submit" value="Favorite">Favorite</button>
+    </form>
+{% endblock %}
